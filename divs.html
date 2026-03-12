@@ -32,9 +32,52 @@
 
     <input type="text" id="textInput">
     <button onclick="makeNewDiv()">Add end</button>
+    <button onclick="addFront()">Add front</button>
+    <button onclick="remove()">Remove</button>
+    <button onclick="shuffleDivs()">Shuffle</button>
 
 </body>
 <script>
+    function shuffleDivs() {
+        let divListItems = document.getElementsByClassName("divlist");
+        let len = divListItems.length;
+        if (len < 2) return;
+
+        let i = Math.floor(Math.random() * len);
+        let j;
+        do {
+            j = Math.floor(Math.random() * len);
+        } while (j === i);
+
+        let el1 = divListItems[i];
+        let el2 = divListItems[j];
+
+        let placeholder = document.createElement("div");
+        el1.parentNode.insertBefore(placeholder, el1);
+        el2.parentNode.insertBefore(el1, el2);
+        placeholder.parentNode.insertBefore(el2, placeholder);
+        placeholder.parentNode.removeChild(placeholder);
+    }
+
+    function remove() {
+        let divListItems = document.getElementsByClassName("divlist");
+        if (divListItems.length > 1) {
+            divListItems[1].remove();
+        } else if (divListItems.length === 1) {
+            divListItems[0].remove();
+        }
+    }
+
+    function addFront() {
+        let element = document.createElement("div");
+        let input = document.getElementById("textInput");
+        element.innerHTML = input.value;
+        element.className = "divlist";
+
+        let container = document.getElementById("target");
+        container.insertBefore(element, container.firstChild);
+    }
+
     function makeNewDiv() {
         let element = document.createElement("div");
         let input = document.getElementById("textInput");

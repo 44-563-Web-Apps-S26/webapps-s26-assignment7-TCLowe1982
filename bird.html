@@ -39,11 +39,27 @@
         var score = 0;
         var locationsVisited = 0;
         var lastLocation = 0;
-        var statueLocation = 19;
-        var toucanLocation = 14;
-        var lorikeetLocations = [3, 25];
-        var buntingLocations = [2, 5, 11, 20, 21];
         var gameOver = false;
+
+        function pickUnique(count, exclude) {
+            var result = [];
+            while (result.length < count) {
+                var pos = Math.floor(Math.random() * 35);
+                if (!exclude.includes(pos) && !result.includes(pos)) {
+                    result.push(pos);
+                }
+            }
+            return result;
+        }
+
+        var taken = [];
+        var statueLocation = pickUnique(1, taken)[0];
+        taken.push(statueLocation);
+        var toucanLocation = pickUnique(1, taken)[0];
+        taken.push(toucanLocation);
+        var lorikeetLocations = pickUnique(2, taken);
+        taken = taken.concat(lorikeetLocations);
+        var buntingLocations = pickUnique(5, taken);
 
         function check(position) {
             if (gameOver) return;
@@ -58,6 +74,7 @@
                 img.src = "Images/toucan.png";
                 img.onclick = null;
                 score += 5;
+                gameOver = true;
             } else if (lorikeetLocations.includes(position)) {
                 img.src = "Images/lorikeet.png";
                 img.onclick = null;
@@ -79,6 +96,25 @@
             document.getElementById("score").textContent = "Score is " + score + ".";
 
             lastLocation = position;
+
+            if (!gameOver) {
+                moveToucan();
+            }
+        }
+
+        function moveToucan() {
+            var row = Math.floor(toucanLocation / 7);
+            var col = toucanLocation % 7;
+
+            var directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]; // N, S, W, E
+            var valid = directions.filter(function(d) {
+                var nr = row + d[0];
+                var nc = col + d[1];
+                return nr >= 0 && nr <= 4 && nc >= 0 && nc <= 6;
+            });
+
+            var dir = valid[Math.floor(Math.random() * valid.length)];
+            toucanLocation = (row + dir[0]) * 7 + (col + dir[1]);
         }
 
         function help() {

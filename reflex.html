@@ -32,10 +32,12 @@
     function beginTime() {
       haltTime = undefined;
 
-      for (let i = 0; i <= 5; i++) {
+      var startValue = Math.floor(Math.random() * 9) + 2;
+
+      for (let i = 0; i <= startValue; i++) {
         setTimeout(function() {
           document.getElementById("counter").innerHTML = i;
-        }, (5 - i) * 1000);
+        }, (startValue - i) * 1000);
       }
 
       setTimeout(function() {
@@ -46,7 +48,7 @@
           var elapsed = targetTime - haltTime;
           document.getElementById("target").innerHTML = "Time was " + elapsed;
         }
-      }, 5000);
+      }, startValue * 1000);
     }
   </script>
 
