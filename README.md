@@ -15,3 +15,9 @@ Toucan [https://www.freepik.com/free-vector/toucan-bird-animal-cartoon-sticker_2
 Lorikeet [https://pngtree.com/freepng/closeup-image-of-a-rainbow-lorikeet-bird_15956816.htmlpng](image from pngtree.com)
 
 Bunting [https://www.rawpixel.com/image/9056796/png-sticker-elements](Image by rawpixel.com)
+
+ [https://44-563-web-apps-s26.github.io/webapps-s26-assignment7-TCLowe1982/bird.html](Bird Game)
+
+ [https://44-563-web-apps-s26.github.io/webapps-s26-assignment7-TCLowe1982/divs.html](Moving Divs)
+
+ [https://44-563-web-apps-s26.github.io/webapps-s26-assignment7-TCLowe1982/reflex.html](Reflex Test)
